@@ -1,22 +1,15 @@
-% figure;
-% matchix = matchstates(Corrsw20,Corrsin);
-% count = 0;
-% for ii = 1:2
-%     for jj = 1:3
-%         count = count + 1;
-%         subplot(2,3,count);h = tight_subplot(2, 3, [.001 .001],[.01 .001],[.05 .05]);
-% 
-%         gsplot(CorrCV20(:,:,matchix(count)));
-%         axis square; axis ij 
-%         set(gca, 'XTick', [], 'YTick', [], 'CLim', [-1 1])%, 'XColor', [1 1 1], 'YColor', [1 1 1])
-%         c = get(gca, 'Children');
-%         set(c(find(strcmp(get(c, 'Type'),'line'))), 'Color', 'w');        
-%        % text(1.5,-2,sprintf('State %d\n', ii, Sorder(ii)), 'Fontsize', 14);
-%     end
-% end
-
-
 function [MATCHIDX,out] = matchstates(grnd,testmat,method)
+%
+%  Description: this dependecy is written to take:
+%               grnd: a 3D matrix where the first two dimensions represent the covariance/correlation matrix, and the 3rd dim corresponds to state. (ground)
+%               testmat: a 3D matrix of brain states stacked (:,:,1), ... (:,:,N) where N is number of the state (states to be matched with the grnd)
+%               method: how to calculate the similarity between the cov/corr matrices of grnd and testmat
+%
+%
+%
+%
+%
+
 switch method
     case 1
         nStates = size(grnd,3);
@@ -46,35 +39,7 @@ switch method
                 AA(j,i) = -tmp(1,length(tmp));   % For correlations we wanted to find the max, but for the distance we want it to be min but since we want to use the same written function based on max to be used, simply it translates to find the max of -distance
             end
         end
-    % [maxval,idx] = max(AA');
-    % count = 0;
-    % disp('level 1 - passed')
-    % for i=1:numel(idx)
-    %     if sum(idx == idx(i)) > 1
-    %         count = count + 1
-    %         ind{count} = find(idx == idx(i));
-    %         val{count} = idx(i);
-    %         
-    %         [~,b] = max(maxval(ind{1}));
-    %         idx(ind{count}(b)) = val{count};
-    %         for j = 2:numel(ind)
-    %             disp('level 2 - passed')
-    %             ind{count}
-    %             disp('level 3 - passed')
-    %             ind{count}(j)
-    %             disp('level 4 - passed')
-    %             AA(ind{count}(j),:)
-    %             disp('level 5 - passed')
-    %           [aa,bb] = sort(AA(ind{count}(j),:),'descend');
-    %           [C,IA] = setdiff(bb,idx);
-    %           idx(ind{count}(j)) = C(1);
-    %         end
-    %     else
-    %         idx = idx;
-    %         
-    %     end
-    % end
-    % 
+
     
 end
     count = 0;
@@ -92,9 +57,5 @@ end
     out = sortrows(idx,1);
     MATCHIDX = out(:,2);
     
-     
-        
-%        sqrt(pdist2(reshape(CORRCOEF{1}(:,:,1),[],1)', reshape(CORRCOEF{2}(:,:,4),[],1)'))
-%MATCHIDX = [idx;1:length(idx)]';
 
 end
