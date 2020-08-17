@@ -56,9 +56,9 @@ for j = 1:size(Data{1,1},1)
 end
 
 for i = 1:size(indx,1)
-PLV{m,1}(:,i) = phaseloc(phi{m}(:,indx(i,1)),phi{m}(:,indx(i,2)),'option','window','winsize',58);
-CCORSW{m,1}(:,i) = circcorSW(phi{m}(:,indx(i,1)),phi{m}(:,indx(i,2)),'option','window','winsize',58);
-NCCORSW{m,1}(:,i) = newcirccorSW(phi{m}(:,indx(i,1)),phi{m}(:,indx(i,2)),'option','window','winsize',58);
+PLV{m,1}(:,i) = phaseloc(phi{m}(:,indx(i,1)),phi{m}(:,indx(i,2)),'option','window','winsize',winLen);
+CCORSW{m,1}(:,i) = circcorSW(phi{m}(:,indx(i,1)),phi{m}(:,indx(i,2)),'option','window','winsize',winLen);
+NCCORSW{m,1}(:,i) = newcirccorSW(phi{m}(:,indx(i,1)),phi{m}(:,indx(i,2)),'option','window','winsize',winLen);
 SINDELPHI1{m}(:,i)= 1-abs(sin(phi{m}(:,indx(i,1))-phi{m}(:,indx(i,2))));
 COSDELPHI1{m}(:,i) = cos(phi{m}(:,indx(i,1))-phi{m}(:,indx(i,2)));
 end
