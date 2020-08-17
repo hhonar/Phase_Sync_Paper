@@ -53,8 +53,9 @@ switch method
         strg = 'filtfiltbutw';
 end
 w = [30,60,120];
+N = 1000  % number of runs
+for m = 1:1:N
 
-for m = 1:1:200
 noise = mvnrnd([0 0],[1 0;0 1],length(t))';
 ex = noise(1,:);
 ey = noise(2,:);
