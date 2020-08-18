@@ -63,8 +63,8 @@ SINDELPHI1{m}(:,i)= 1-abs(sin(phi{m}(:,indx(i,1))-phi{m}(:,indx(i,2))));
 COSDELPHI1{m}(:,i) = cos(phi{m}(:,indx(i,1))-phi{m}(:,indx(i,2)));
 end
 
-smoothSin{m} = movmean(SINDELPHI1{m},30,1,'Endpoints','fill');
-smoothCos{m} = movmean(COSDELPHI1{m},30,1,'Endpoints','fill');
+smoothSin{m} = movmean(SINDELPHI1{m},winLen,1,'Endpoints','fill');
+smoothCos{m} = movmean(COSDELPHI1{m},winLen,1,'Endpoints','fill');
 m
 end
 %% ---------------------------------------------------
@@ -85,18 +85,17 @@ display('Dont worry about the warning, it just ignores the ends in sliding windo
 
 % Using the sliding window
 SWDat = cat(1,Data{1,1:20});
-[CSW,~] = Sliding_Window(SWDat,60);
+[CSW,~] = Sliding_Window(SWDat,winLen);
 for i=1:size(CSW,3)
     CSWVect(i,:) = vmconv(CSW(:,:,i),'mat2vec');
 end
 [idx{6},Corr{6}] = mykmeans(CSWVect,nS);
 % Sliding Window Pre-Whitening using AR(1)
- [CV2] = sliding_window_white_AR1(SWDat, 60,'white');
+ [CV2] = sliding_window_white_AR1(SWDat, winLen,'white');
 for i=1:size(CV2,3)
     CV2Vect(i,:) = vmconv(CV2(:,:,i),'mat2vec');
 end
 [idx{7},Corr{7}] = mykmeans(CV2Vect,nS);
-
 
 
 
