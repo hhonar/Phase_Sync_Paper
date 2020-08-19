@@ -1,7 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Subject: Phase Synch. Evalulation
 %          of Real Data (Kirby21)
-% looking at the heatmap of time transition
 % Author: Hamed Honari
 % Advisor: M. Lindquist
 % Date: NOV.10, 2019
