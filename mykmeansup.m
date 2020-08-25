@@ -25,5 +25,5 @@ RSS = sum(sumd);
 BIC = RSS + (log(size(idx,1)))*nS*size(C,2);
 AIC = RSS + nS*size(C,2);
 
-E = evalclusters(CSWVect,'kmeans','DaviesBouldin','klist',[1:maxK]);
+E = evalclusters(CVUrow,'kmeans','DaviesBouldin','klist',[1:maxK]);
 DBI = E.OptimalK;
