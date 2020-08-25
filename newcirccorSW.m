@@ -121,24 +121,3 @@ function rhohat = newcirccorr(alpha,beta)
 end
 
 
-
-%---------------------------------------------------
-% SUBROUTINE 3: Estimation of new circ. correlation - tapered
-%---------------------------------------------------
-
-function rhohat = newcirccorrhamming(alpha,beta)
-    v = uint16(1:length(alpha));
-    C = nchoosek(v,uint16(2));
-    rhonumer = sum( hamming(length(alpha)).*(orderfnc( alpha(C(:,1)),alpha(C(:,2)) ) .* orderfnc( beta(C(:,1)),beta(C(:,2)) ))); 
-    rhodenom = sqrt(sum(hamming(length(alpha)).*((orderfnc(alpha(C(:,1)),alpha(C(:,2)))).^2)).*sum(hamming(length(alpha)).*((orderfnc(beta(C(:,1)),beta(C(:,2)))).^2)));
-    rhohat = rhonumer/rhodenom;
-end
-
-
-function rhohat = newcirccorr1(alpha,beta)
-    v = uint16(1:length(alpha)-1);
-    C = [v' (v+1)'];
-    rhonumer = sum( orderfnc( alpha(C(:,1)),alpha(C(:,2)) ) .* orderfnc( beta(C(:,1)),beta(C(:,2)) )); 
-    rhodenom = sqrt(sum((orderfnc(alpha(C(:,1)),alpha(C(:,2)))).^2).*sum((orderfnc(beta(C(:,1)),beta(C(:,2)))).^2));
-    rhohat = rhonumer/rhodenom;
-end
